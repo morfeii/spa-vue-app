@@ -1,59 +1,48 @@
 <template>
-  <v-card
-    color="grey lighten-4"
-    flat
-    height="200px"
-    tile
-  >
+  <v-app>
     <v-navigation-drawer
       app
       temporary
       v-model="drawer"
-      >
-        <v-list>
-          <v-list-item
-            v-for="link of links"
-            :key="link.title"
-            :to="link.url"
-          >
-            <v-list-item-icon>
-              <v-icon left>{{link.icon}}</v-icon>
-            </v-list-item-icon>
+    >
+      <v-list>
+        <v-list-tile
+          v-for="link of links"
+          :key="link.title"
+          :to="link.url"
+        >
+          <v-list-tile-action>
+            <v-icon>{{link.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="link.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
 
-            <v-list-item-content>
-              <v-list-item-title v-text="link.title"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    <v-toolbar color="purple">
-      <v-app-bar-nav-icon
+    <v-toolbar app dark color="primary">
+      <v-toolbar-side-icon
         @click="drawer = !drawer"
-        class="d-none"
-      ></v-app-bar-nav-icon>
+
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-toolbar-side-icon>
       <v-toolbar-title>Notes Application</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
-        flat
-        v-for="link in links"
-        :key="link.title"
-        :to="link.url"
+          flat
+          v-for="link in links"
+          :key="link.title"
+          :to="link.url"
         >
           <v-icon left>{{link.icon}}</v-icon>
-          Login
-        </v-btn>
-
-        <v-btn flat>
-          Link Two
-        </v-btn>
-
-        <v-btn flat>
-          Link Tree
+          {{link.title}}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-  </v-card>
+  </v-app>
 </template>
 
 <script>
@@ -63,6 +52,9 @@ export default {
       drawer: false,
       links: [
         { title: 'Login', icon: 'mdi-lock', url: '/login' },
+        { title: 'Registration', icon: 'mdi-account', url: '/registration' },
+        { title: 'New note', icon: 'mdi-note-plus', url: '/new' },
+        { title: 'My notes', icon: 'mdi-note-multiple', url: '/list' },
       ],
     };
   },
