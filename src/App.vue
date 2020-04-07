@@ -24,7 +24,7 @@
     <v-toolbar app dark color="primary">
       <v-toolbar-side-icon
         @click="drawer = !drawer"
-
+        class="hidden-md-and-up"
       >
         <v-icon>mdi-menu</v-icon>
       </v-toolbar-side-icon>
@@ -53,6 +53,7 @@ export default {
       links: [
         { title: 'Login', icon: 'mdi-lock', url: '/login' },
         { title: 'Registration', icon: 'mdi-account', url: '/registration' },
+        { title: 'Orders', icon: 'mdi-bookmark', url: '/orders' },
         { title: 'New note', icon: 'mdi-note-plus', url: '/new' },
         { title: 'My notes', icon: 'mdi-note-multiple', url: '/list' },
       ],
