@@ -4,7 +4,7 @@
       <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
           <v-toolbar dark color="primary">
-            <v-toolbar-title>Login form</v-toolbar-title>
+            <v-toolbar-title>Registration form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <v-form v-model="valid" ref="form" validation>
@@ -25,6 +25,15 @@
                 v-model="password"
                 :rules="passwordRules"
               ></v-text-field>
+              <v-text-field
+                prepend-icon="mdi-lock"
+                name="confirm-password"
+                label="Confirm password"
+                type="password"
+                :counter="6"
+                v-model="confirmPassword"
+                :rules="confirmPasswordRules"
+              ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -33,7 +42,7 @@
               color="primary"
               @click="onSubmit"
               :disabled="!valid"
-            >Login</v-btn>
+            >Create Account</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -48,6 +57,7 @@ export default {
     return {
       email: '',
       password: '',
+      confirmPassword: '',
       valid: false,
       emailRules: [
         (v) => !!v || 'E-mail is required',
@@ -56,6 +66,10 @@ export default {
       passwordRules: [
         (v) => !!v || 'Password is required',
         (v) => (v && v.length >= 6) || 'Password must be equal or more than 6 characters',
+      ],
+      confirmPasswordRules: [
+        (v) => !!v || 'Password is required',
+        (v) => (v === this.password) || 'Passwords shoud match',
       ],
     };
   },
