@@ -10,46 +10,42 @@ import Registration from '@/components/Auth/Registration.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: '',
-    name: 'home',
-    component: Home,
-  },
-  {
-    path: '/note/:id',
-    name: 'note',
-    component: Note,
-  },
-  {
-    path: '/list',
-    name: 'list',
-    component: NotesList,
-  },
-  {
-    path: '/new',
-    name: 'newNote',
-    component: NewNote,
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-  },
-  {
-    path: '/registration',
-    name: 'reg',
-    component: Registration,
-  },
-  {
-    path: '/orders',
-    name: 'orders',
-    component: Orders,
-  },
-];
-
-const router = new VueRouter({
-  routes,
+export default new VueRouter({
+  routes: [
+    {
+      path: '',
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/note/:id',
+      name: 'note',
+      component: Note,
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: NotesList,
+    },
+    {
+      path: '/new',
+      name: 'newNote',
+      component: NewNote,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/registration',
+      name: 'reg',
+      component: Registration,
+    },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: Orders,
+    },
+  ],
 });
-
-export default router;
