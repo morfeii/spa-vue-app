@@ -4,7 +4,7 @@ import Home from '@/components/Home.vue';
 import Note from '@/components/Notes/Note.vue';
 import NewNote from '@/components/Notes/NewNote.vue';
 import NotesList from '@/components/Notes/NotesList.vue';
-import Orders from '@/components/User/Orders.vue';
+import Favorites from '@/components/User/Favorites.vue';
 import Login from '@/components/Auth/Login.vue';
 import Registration from '@/components/Auth/Registration.vue';
 
@@ -43,9 +43,9 @@ export default new VueRouter({
       component: Registration,
     },
     {
-      path: '/orders',
-      name: 'orders',
-      component: Orders,
+      path: '/favorites',
+      name: 'favorites',
+      component: Favorites,
     },
   ],
 });

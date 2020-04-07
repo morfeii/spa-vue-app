@@ -28,7 +28,9 @@
       >
         <v-icon>mdi-menu</v-icon>
       </v-toolbar-side-icon>
-      <v-toolbar-title>My Notes App</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" class="pointer">My Notes App</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
@@ -57,7 +59,7 @@ export default {
       links: [
         { title: 'Login', icon: 'mdi-lock', url: '/login' },
         { title: 'Registration', icon: 'mdi-account', url: '/registration' },
-        { title: 'Orders', icon: 'mdi-bookmark', url: '/orders' },
+        { title: 'Favorites', icon: 'mdi-bookmark', url: '/favorites' },
         { title: 'New note', icon: 'mdi-note-plus', url: '/new' },
         { title: 'My notes', icon: 'mdi-note-multiple', url: '/list' },
       ],
@@ -65,3 +67,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .pointer {
+    cursor: pointer
+  }
+</style>
