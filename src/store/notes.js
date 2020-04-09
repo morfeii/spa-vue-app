@@ -1,4 +1,15 @@
 /* eslint-disable no-param-reassign */
+import * as fb from 'firebase';
+
+class Note {
+  constructor(title, description, ownerId, id = null) {
+    this.title = title;
+    this.description = description;
+    this.ownerId = ownerId;
+    this.id = id;
+  }
+}
+
 export default {
   state: {
     notes: [
@@ -25,10 +36,28 @@ export default {
     },
   },
   actions: {
-    createNote({ commit }, payload) {
-      payload.id = Math.random();
+    async createNote({ commit, getters }, payload) {
+      commit('clearError');
+      commit('setLoading', true);
 
-      commit('createNote', payload);
+      try {
+        const newNote = new Note(
+          payload.title,
+          payload.description,
+          getters.user.id,
+        );
+
+        const note = await fb.database().ref('notes').push(newNote);
+        commit('setLoading', false);
+        commit('createNote', {
+          ...newNote,
+          id: note.key,
+        });
+      } catch (error) {
+        commit('setError', error.message);
+        commit('setLoading', false);
+        throw error;
+      }
     },
   },
   getters: {

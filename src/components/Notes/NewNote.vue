@@ -12,14 +12,13 @@
               required
               :rules="[v => !!v || 'Title is require']"
             ></v-text-field>
-            <v-text-field
+            <v-textarea
               name="description"
               label="Note description"
               type="text"
               v-model="description"
-              multi-line
               :rules="[v => !!v || 'Description is require']"
-            ></v-text-field>
+            ></v-textarea>
           </v-form>
           <v-layout>
             <v-flex xs12>
@@ -35,8 +34,9 @@
               <v-spacer></v-spacer>
               <v-btn
                 class="success"
+                :loading="loading"
                 @click="createNote"
-                :disabled="!valid"
+                :disabled="!valid || loading"
               >Create Note</v-btn>
             </v-flex>
           </v-layout>
@@ -55,6 +55,11 @@ export default {
       valid: false,
     };
   },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
+  },
   methods: {
     createNote() {
       if (this.$refs.form.validate()) {
@@ -64,7 +69,11 @@ export default {
           switch: this.switch1,
         };
 
-        this.$store.dispatch('createNote', note);
+        this.$store.dispatch('createNote', note)
+          .then(() => {
+            this.$router.push('/list');
+          })
+          .catch(() => {});
       }
     },
   },

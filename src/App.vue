@@ -26,7 +26,7 @@
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="Logout"></v-list-tile-title>
+            <v-list-tile-title>Logout</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -69,7 +69,7 @@
       <router-view></router-view>
     </v-content>
 
-    <v-tamplate v-if="error">
+    <v-template v-if="error">
       <v-snackbar
         :timeout="5000"
         :multi-line="true"
@@ -80,7 +80,7 @@
         {{ error }}
         <v-btn flat dark @click.native="closeError">Close</v-btn>
       </v-snackbar>
-    </v-tamplate>
+    </v-template>
   </v-app>
 </template>
 
