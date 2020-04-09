@@ -63,7 +63,8 @@ export default {
           description: this.description,
           switch: this.switch1,
         };
-        console.log(note);
+
+        this.$store.dispatch('createNote', note);
       }
     },
   },

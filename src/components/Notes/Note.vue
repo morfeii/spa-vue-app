@@ -4,8 +4,8 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-text>
-            <h1 class="text-primary">Title</h1>
-            <p>Description</p>
+            <h1 class="text-primary">{{note.title}}</h1>
+            <p>{{note.description}}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -20,8 +20,12 @@
 
 <script>
 export default {
-  data() {
-    return {};
+  props: ['id'],
+  computed: {
+    note() {
+      const { id } = this;
+      return this.$store.getters.noteById(id);
+    },
   },
 };
 </script>

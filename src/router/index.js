@@ -19,6 +19,7 @@ export default new VueRouter({
     },
     {
       path: '/note/:id',
+      props: true,
       name: 'note',
       component: Note,
     },

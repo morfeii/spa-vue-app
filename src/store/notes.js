@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 export default {
   state: {
     notes: [
@@ -19,8 +20,16 @@ export default {
     ],
   },
   mutations: {
+    createNote(state, payload) {
+      state.notes.push(payload);
+    },
   },
   actions: {
+    createNote({ commit }, payload) {
+      payload.id = Math.random();
+
+      commit('createNote', payload);
+    },
   },
   getters: {
     notes(state) {
@@ -28,6 +37,9 @@ export default {
     },
     myNotes(state) {
       return state.notes;
+    },
+    noteById(state) {
+      return (noteId) => state.notes.find((note) => note.id === +noteId);
     },
   },
 };
