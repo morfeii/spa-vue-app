@@ -6,7 +6,7 @@
 
         <v-card
           class="elevation-10 mb-3"
-          v-for="note in notes"
+          v-for="note in myNotes"
           :key="note.id"
         >
           <v-layout row>
@@ -34,21 +34,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      notes: [
-        {
-          id: 1,
-          title: 'First',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-        },
-        {
-          id: 2,
-          title: 'Second',
-          description: 'Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate.',
-        },
-      ],
-    };
+  computed: {
+    myNotes() {
+      return this.$store.getters.myNotes;
+    },
   },
 };
 </script>
