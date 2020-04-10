@@ -18,6 +18,7 @@
             <v-list-tile-title v-text="link.title"></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
         <v-list-tile
           v-if="isUserLoggedIn"
           @click="onLogout"
@@ -110,7 +111,6 @@ export default {
       return [
         { title: 'Login', icon: 'mdi-lock', url: '/login' },
         { title: 'Registration', icon: 'mdi-account', url: '/registration' },
-
       ];
     },
   },
