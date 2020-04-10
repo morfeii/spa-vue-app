@@ -37,6 +37,12 @@ export default {
     loadNotes(state, payload) {
       state.notes = payload;
     },
+    updateNote(state, { title, description, id }) {
+      const note = state.notes.find((a) => a.id === id);
+
+      note.title = title;
+      note.description = description;
+    },
   },
   actions: {
     async createNote({ commit, getters }, payload) {
@@ -86,13 +92,31 @@ export default {
         throw error;
       }
     },
+    async updateNote({ commit }, { title, description, id }) {
+      commit('clearError');
+      commit('setLoading', true);
+
+      try {
+        await fb.database().ref('notes').child(id).update({
+          title, description,
+        });
+        commit('updateNote', {
+          title, description, id,
+        });
+        commit('setLoading', false);
+      } catch (error) {
+        commit('setError', error.message);
+        commit('setLoading', false);
+        throw error;
+      }
+    },
   },
   getters: {
     notes(state) {
       return state.notes;
     },
-    myNotes(state) {
-      return state.notes;
+    myNotes(state, getters) {
+      return state.notes.filter((note) => note.ownerId === getters.user.id);
     },
     noteById(state) {
       return (noteId) => state.notes.find((note) => note.id === noteId);

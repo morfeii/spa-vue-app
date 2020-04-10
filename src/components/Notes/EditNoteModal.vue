@@ -5,6 +5,8 @@
     </v-btn>
     <v-card>
       <v-container>
+        <h1 class="text--secondary mb-3">Edit Note</h1>
+        <v-divider></v-divider>
         <v-layout row>
           <v-flex xs12>
             <v-card-title>
@@ -77,6 +79,7 @@ export default {
           id: this.note.id,
         });
       }
+      this.modal = false;
     },
   },
 };

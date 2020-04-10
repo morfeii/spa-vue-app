@@ -2,14 +2,14 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card v-if="!loding">
+        <v-card v-if="!loading">
           <v-card-text>
             <h1 class="text-primary">{{note.title}}</h1>
             <p>{{note.description}}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <addEditNoteModal :note="note"></addEditNoteModal>
+            <addEditNoteModal :note="note" v-if="isOwner"></addEditNoteModal>
             <v-btn class="success">Save</v-btn>
           </v-card-actions>
         </v-card>
@@ -38,6 +38,9 @@ export default {
     },
     loading() {
       return this.$store.getters.loading;
+    },
+    isOwner() {
+      return this.note.ownerId === this.$store.getters.user.id;
     },
   },
   components: {
