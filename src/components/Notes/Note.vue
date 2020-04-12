@@ -10,7 +10,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <addEditNoteModal :note="note" v-if="isOwner"></addEditNoteModal>
-            <v-btn class="success">Save</v-btn>
+            <app-comment-modal :note="note"></app-comment-modal>
           </v-card-actions>
         </v-card>
         <div v-else class="text-xs-center">
