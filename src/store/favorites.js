@@ -55,6 +55,17 @@ export default {
         commit('setError', error.message);
       }
     },
+    async markCommentDone({ commit, getters }, payload) {
+      commit('clearError');
+      try {
+        await fb.database().ref(`/users/${getters.user.id}/comments/${payload}`).update({
+          done: true,
+        });
+      } catch (error) {
+        commit('setError', error.message);
+        throw error;
+      }
+    },
   },
   getters: {
     doneComments(state) {

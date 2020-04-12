@@ -13,8 +13,8 @@
         <h1 class="text--secondary mb-3">Favorites</h1>
         <v-list-tile
           avatar
-          v-for ="fav in comments"
-          :key="fav.id"
+          v-for ="item in comments"
+          :key="item.id"
         >
           <v-list-tile-action>
             <v-checkbox
@@ -23,12 +23,12 @@
             </v-checkbox>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{fav.title}}</v-list-tile-title>
-            <v-list-tile-sub-title>{{fav.comment}}</v-list-tile-sub-title>
+            <v-list-tile-title>{{item.name}}</v-list-tile-title>
+            <v-list-tile-sub-title>{{item.comment}}</v-list-tile-sub-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn
-              :to="'/note/' + fav.id"
+              :to="'/note/' + item.noteId"
               class="primary"
             >Open</v-btn>
           </v-list-tile-action>
@@ -52,13 +52,18 @@ export default {
     },
   },
   methods: {
-    markDone(fav) {
-      // eslint-disable-next-line no-param-reassign
-      fav.done = true;
+    markDone(item) {
+      this.$store.dispatch('markCommentDone', item.id)
+        .then(() => {
+          // eslint-disable-next-line no-param-reassign
+          item.done = true;
+          console.log(item.id);
+        })
+        .catch(() => {});
     },
   },
   created() {
-    this.$store.dispath('fetchComments');
+    this.$store.dispatch('fetchComments');
   },
 };
 </script>

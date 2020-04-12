@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import * as fb from 'firebase';
 
 class Note {
@@ -12,23 +11,7 @@ class Note {
 
 export default {
   state: {
-    notes: [
-      // {
-      //   id: '1',
-      //   title: 'First',
-      //   description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-      // },
-      // {
-      //   id: '2',
-      //   title: 'Second',
-      //   description: 'Eligendi non quis exercitationem rit optio amet ab quasi cupiditate.',
-      // },
-      // {
-      //   id: '3',
-      //   title: 'Third',
-      //   description: 'Voluptatum ducimus voluptates voluptas?',
-      // },
-    ],
+    notes: [],
   },
   mutations: {
     createNote(state, payload) {

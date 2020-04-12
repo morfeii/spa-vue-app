@@ -76,7 +76,7 @@ export default {
       this.localLoading = false;
     },
     onSave() {
-      if (this.note.name !== '' && this.comment !== '') {
+      if (this.name !== '' && this.comment !== '') {
         this.localLoading = true;
         this.$store.dispatch('createComment', {
           name: this.name,
