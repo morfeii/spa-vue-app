@@ -57,7 +57,6 @@ export default {
         const note = {
           title: this.title,
           description: this.description,
-          switch: this.switch1,
         };
 
         this.$store.dispatch('createNote', note)

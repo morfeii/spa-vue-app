@@ -24,6 +24,7 @@ export default {
       name, comment, noteId, ownerId, date,
     }) {
       const newComment = new Comment(name, comment, noteId, date);
+      commit('clearError');
 
       try {
         await fb.database().ref(`/users/${ownerId}/comments`).push(newComment);

@@ -7,7 +7,6 @@ import NotesList from '@/components/Notes/NotesList.vue';
 import Saved from '@/components/User/Saved.vue';
 import Login from '@/components/Auth/Login.vue';
 import Registration from '@/components/Auth/Registration.vue';
-import AuthGuard from './auth-guard';
 
 Vue.use(VueRouter);
 
@@ -28,13 +27,11 @@ export default new VueRouter({
       path: '/list',
       name: 'list',
       component: NotesList,
-      beforeEnter: AuthGuard,
     },
     {
       path: '/new',
       name: 'newNote',
       component: NewNote,
-      beforeEnter: AuthGuard,
     },
     {
       path: '/login',
@@ -50,7 +47,6 @@ export default new VueRouter({
       path: '/saved',
       name: 'saved',
       component: Saved,
-      beforeEnter: AuthGuard,
     },
   ],
 });
