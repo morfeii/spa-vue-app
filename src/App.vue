@@ -70,7 +70,7 @@
       <router-view></router-view>
     </v-content>
 
-    <v-template v-if="error">
+    <template v-if="error">
       <v-snackbar
         :timeout="5000"
         :multi-line="true"
@@ -81,7 +81,7 @@
         {{ error }}
         <v-btn flat dark @click.native="closeError">Close</v-btn>
       </v-snackbar>
-    </v-template>
+    </template>
   </v-app>
 </template>
 
@@ -102,7 +102,7 @@ export default {
     links() {
       if (this.isUserLoggedIn) {
         return [
-          { title: 'Favorites', icon: 'mdi-bookmark', url: '/favorites' },
+          { title: 'Saved', icon: 'mdi-bookmark', url: '/saved' },
           { title: 'New note', icon: 'mdi-note-plus', url: '/new' },
           { title: 'My notes', icon: 'mdi-note-multiple', url: '/list' },
         ];

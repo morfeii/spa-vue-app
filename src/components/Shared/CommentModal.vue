@@ -1,6 +1,6 @@
 <template>
   <v-dialog width="400px" v-model="modal">
-    <v-btn class="primary mr-3" flat slot="activator">
+    <v-btn class="success" flat slot="activator">
       Save
     </v-btn>
     <v-card>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: ['note'],
   data() {
@@ -66,6 +68,7 @@ export default {
       modal: false,
       name: '',
       comment: '',
+      localLoading: false,
     };
   },
   methods: {
@@ -83,6 +86,7 @@ export default {
           comment: this.comment,
           noteId: this.note.id,
           ownerId: this.note.ownerId,
+          date: moment().format('lll'),
         })
           .finally(() => {
             this.name = '';

@@ -18,7 +18,7 @@
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat :to="'/note/' + note.id" class="primary">Open</v-btn>
+              <v-btn flat :to="'/note/' + note.id" class="primary mr-3">Open</v-btn>
               <app-comment-modal :note="note"></app-comment-modal>
             </v-card-actions>
           </v-card>

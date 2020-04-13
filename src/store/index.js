@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import notes from './notes';
 import user from './user';
 import common from './common';
-import favorites from './favorites';
+import comments from './comments';
 
 Vue.use(Vuex);
 
@@ -12,6 +12,6 @@ export default new Vuex.Store({
     notes,
     user,
     common,
-    favorites,
+    comments,
   },
 });

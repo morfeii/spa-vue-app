@@ -22,15 +22,6 @@
           </v-form>
           <v-layout>
             <v-flex xs12>
-              <v-switch
-                color="primary"
-                label="Add to My Notes?"
-                v-model="toggle"
-              ></v-switch>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12>
               <v-spacer></v-spacer>
               <v-btn
                 class="success"

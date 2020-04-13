@@ -10,21 +10,22 @@
         ></v-progress-circular>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 v-else-if="!loading && comments.length !== 0">
-        <h1 class="text--secondary mb-3">Favorites</h1>
+        <h1 class="text--secondary mb-3">Saved Notes</h1>
         <v-list-tile
-          avatar
+          class="mb-3"
           v-for ="item in comments"
           :key="item.id"
         >
-          <v-list-tile-action>
-            <v-checkbox
-              @change="markDone"
-            >
-            </v-checkbox>
-          </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{item.name}}</v-list-tile-title>
-            <v-list-tile-sub-title>{{item.comment}}</v-list-tile-sub-title>
+            <v-list-tile-title class="body-1">
+              <span class="body-2">Author:</span>
+              {{item.name}}
+            </v-list-tile-title>
+            <v-list-tile-sub-title class="body-1">
+              <span class="body-2">Comment:</span>
+              {{item.comment}}
+            </v-list-tile-sub-title >
+            <v-list-tile-sub-title>{{item.date}}</v-list-tile-sub-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn
@@ -49,17 +50,6 @@ export default {
     },
     comments() {
       return this.$store.getters.comments;
-    },
-  },
-  methods: {
-    markDone(item) {
-      this.$store.dispatch('markCommentDone', item.id)
-        .then(() => {
-          // eslint-disable-next-line no-param-reassign
-          item.done = true;
-          console.log(item.id);
-        })
-        .catch(() => {});
     },
   },
   created() {

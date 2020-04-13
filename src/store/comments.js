@@ -1,11 +1,11 @@
 import * as fb from 'firebase';
 
 class Comment {
-  constructor(name, comment, noteId, done = false, id = null) {
+  constructor(name, comment, noteId, date, id = null) {
     this.name = name;
     this.comment = comment;
     this.noteId = noteId;
-    this.done = done;
+    this.date = date;
     this.id = id;
   }
 }
@@ -21,9 +21,9 @@ export default {
   },
   actions: {
     async createComment({ commit }, {
-      name, comment, noteId, ownerId,
+      name, comment, noteId, ownerId, date,
     }) {
-      const newComment = new Comment(name, comment, noteId);
+      const newComment = new Comment(name, comment, noteId, date);
 
       try {
         await fb.database().ref(`/users/${ownerId}/comments`).push(newComment);
@@ -45,7 +45,7 @@ export default {
         Object.keys(comments).forEach((key) => {
           const c = comments[key];
           resultComments.push(
-            new Comment(c.name, c.comments, c.noteId, c.done, key),
+            new Comment(c.name, c.comment, c.noteId, c.date, key),
           );
         });
         commit('loadComments', resultComments);
@@ -58,7 +58,7 @@ export default {
     async markCommentDone({ commit, getters }, payload) {
       commit('clearError');
       try {
-        await fb.database().ref(`/users/${getters.user.id}/comments/${payload}`).update({
+        await fb.database().ref(`/users/${getters.user.id}/comments/`).child(payload).update({
           done: true,
         });
       } catch (error) {
@@ -68,14 +68,8 @@ export default {
     },
   },
   getters: {
-    doneComments(state) {
-      return state.comments.filter((c) => c.done);
-    },
-    undoneComments(state) {
-      return state.comments.filter((c) => !c.done);
-    },
-    comments(state, getters) {
-      return getters.undoneComments.concat(getters.doneComments);
+    comments(state) {
+      return state.comments;
     },
   },
 };
